@@ -37,3 +37,4 @@ services:
     restart: always
     volumes:
       - ./wp:/app/wp
+      - ./test:/app/project
