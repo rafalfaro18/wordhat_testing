@@ -3,10 +3,8 @@ version: '2'
 services:
   wordpress:
     image: wordpress:4.9.8-php5.6-apache
-    # volumes:
-    #   - .:/var/www/html/wp-content/themes/wp_base_theme
-    #   - ./docker/plugins:/var/www/html/wp-content/plugins
-    #   - ./docker/uploads:/var/www/html/wp-content/uploads
+    volumes:
+      - ./wp:/var/www/html/
     ports:
       - "80:80"
     restart: always
@@ -21,8 +19,8 @@ services:
     restart: always
     ports:
       - 3306
-    # volumes:
-      # - ./db:/var/lib/mysql
+    volumes:
+      - ./db:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: wordpress
       MYSQL_DATABASE: wordpress
@@ -34,3 +32,8 @@ services:
   #   volumes:
   #     - .:/var/www/theme
   #   restart: always
+  composer:
+    image: composer:1.8
+    restart: always
+    volumes:
+      - ./wp:/app/wp
