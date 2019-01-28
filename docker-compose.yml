@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 
 services:
   wordpress:
@@ -35,6 +35,8 @@ services:
   composer:
     image: composer:1.8
     restart: 'no'
+    working_dir: /app/project
+    command: composer install
     volumes:
       - ./wp:/app/wp
       - ./test:/app/project
